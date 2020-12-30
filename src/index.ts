@@ -1,41 +1,74 @@
-const modalConst: HTMLDivElement | any = document.getElementById("modal");
-const modalBoxConst: HTMLDivElement | any = document.getElementById("modal");
-const closeButtonConst: HTMLDivElement | any = document.getElementById("modal");
-closeButtonConst.addEventListener("click", closeButton);
-modalBoxConst.addEventListener("click", modalBox);
-closeButtonConst.addEventListener("click", closeButton);
-
-var modalDiv: HTMLDivElement | any = document.getElementById("modal");
-var modalBoxDiv: HTMLDivElement | any = document.getElementById("modal-box");
-var containerDiv: HTMLDivElement | any = document.getElementById("body");
-
-function modalBox(event: Event) {
-  event.stopPropagation();
+declare global {
+	interface Window {
+		Modal: ModalRuntime
+	}
 }
 
-function closeButton() {
-  modalDiv.classList.add("hidden");
-  modalBoxDiv.classList.add("hidden");
-  containerDiv.classList.remove("overflow-hidden");
+interface ModalRuntime {
+	open(modalSelector: string): void
+	close(modalSelector: string): void
 }
 
-document.addEventListener("click", function (event: Event) {
-  var modal: HTMLDivElement | any = document.getElementById("modal");
-  var modalBox: HTMLDivElement | any = document.getElementById("modal-box");
-  var triggerButton: HTMLDivElement | any = document.getElementById("triggerButton");
-  var container: HTMLDivElement | any = document.getElementById("body");
-  var isClickButton = triggerButton.contains(event.target);
-  var isClickModal = modal.contains(event.target);
-  if (isClickButton) {
-    modal.classList.remove("hidden");
-    modalBox.classList.remove("hidden");
-    container.classList.add("overflow-hidden");
-    console.log(modal.classList);
-  } else if (isClickModal) {
-    modal.classList.add("hidden");
-    modalBox.classList.add("hidden");
-    container.classList.remove("overflow-hidden");
-  }
-});
+export default class Modal implements ModalRuntime {
+	#scrollY: number = 0
 
-  
+	#deferrers: {
+		[key: string]: (e: MouseEvent) => void
+	} = {}
+
+	open(modalID: string) {
+		console.log(`[debug] opening modalID=${modalID}`)
+
+		this.#scrollY = window.scrollY
+		document.body.style.position = "fixed"
+		document.body.style.top = -this.#scrollY + "px"
+		document.body.style.right = "0"
+		document.body.style.left = "0"
+
+		const modalRoot = document.getElementById(modalID)!
+		modalRoot.style.display = ""
+		modalRoot.style.position = "fixed"
+		modalRoot.style.top = "0"
+		modalRoot.style.right = "0"
+		modalRoot.style.bottom = "0"
+		modalRoot.style.left = "0"
+
+		const handleClickAway = (e: MouseEvent) => {
+			const { width, height } = (e.target as HTMLElement).getBoundingClientRect()
+			if (width !== window.innerWidth || height !== window.innerHeight) {
+				// No-op
+				return
+			}
+			this.close(modalID)
+		}
+
+		modalRoot.addEventListener("click", handleClickAway)
+		this.#deferrers[modalID] = handleClickAway
+	}
+
+	close(modalID: string) {
+		console.log(`[debug] closing modalID=${modalID}`)
+
+		document.body.style.position = ""
+		document.body.style.top = ""
+		document.body.style.right = ""
+		document.body.style.left = ""
+
+		window.scrollTo(0, this.#scrollY)
+		this.#scrollY = 0
+
+		const modalRoot = document.getElementById(modalID)!
+		modalRoot.style.display = "none"
+		modalRoot.style.position = ""
+		modalRoot.style.top = ""
+		modalRoot.style.right = ""
+		modalRoot.style.bottom = ""
+		modalRoot.style.left = ""
+
+		modalRoot.removeEventListener("click", this.#deferrers[modalID]!)
+	}
+}
+
+;(() => {
+	window.Modal = new Modal()
+})()

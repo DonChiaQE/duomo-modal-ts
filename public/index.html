@@ -1,112 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<style>
+			* {
+				margin: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- Modal -->
+		<div id="modal-root1" style="display: none; background-color: hsl(0, 0%, 0%, 0.4)">
+			<div style="display: flex; justify-content: center; align-items: center; height: 100%">
+				<div style="display: flex; justify-content: center; align-items: center; height: 100%">
+					<div style="display: flex; justify-content: center; align-items: center; height: 100%">
+						<div style="width: 320px; height: 160px; background-color: white; border: 1px solid red">
+							Hello, world!
+							<button onclick="window.Modal.close('modal-root1')">hhhhhhhhhhhhhhhhhhhhhhhh</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="modal-root2" style="display: none; background-color: hsl(0, 0%, 0%, 0.4)">
+			<div style="display: flex; justify-content: center; align-items: center; height: 100%">
+				<div style="display: flex; justify-content: center; align-items: center; height: 100%">
+					<div style="display: flex; justify-content: center; align-items: center; height: 100%">
+						<div style="width: 320px; height: 160px; background-color: white; border: 1px solid red">
+							Hello, world!
+							<button onclick="window.Modal.close('modal-root2')">zzzzzzzzzzzzzzzzzzzzzzzzzz</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-</head>
-
-<body>
-    <div id="root"></div>
-
-    <div id="body" class="h-screen" style='position: relative;'>
-        <div id="modal" class="vstack screen hidden" style="position:fixed; z-index: 2; background-color: rgb(0,0,0,0.4); overflow: auto; ">
-            <div id="modal-box" class="hidden vstack w-320 p-28 bg-white rounded-6 " style=" ">
-                <div class="hstack m-24">
-                    <div class="bg-gray-300 w-128 h-24 rounded-full"></div>
-                    <div class="spacer"></div>
-                    <div class="vstack">
-                        <button id="closeButton" onclick="closeButton()">
-					  <svg class="hover w-24 h-24 color-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-					  </svg>
-					</button>
-                        <div class="spacer"></div>
-                    </div>
-                </div>
-                <hr class="w-full">
-
-                <div class="vstack space-8 align-start m-24">
-                    <div class="bg-gray-300 w-144 h-12 rounded-full"></div>
-                    <div class="bg-gray-300 w-192 h-12 rounded-full"></div>
-                    <div class="bg-gray-300 w-192 h-12 rounded-full"></div>
-                </div>
-            </div>
-        </div>
-
-        <div class="hstack" id="duomo-root">
-            <div class="vstack space-16">
-
-                <div class="bg-gray-300 w-640 h-12 rounded-full"></div>
-                <div class="bg-gray-300 w-192 h-12 rounded-full"></div>
-                <div class="bg-gray-300 w-192 h-12 rounded-full"></div>
-                <div class="bg-gray-300 w-144 h-12 rounded-full"></div>
-                <div class="bg-gray-300 w-192 h-12 rounded-full"></div>
-                <div class="bg-gray-300 w-192 h-12 rounded-full"></div>
-                <div class="bg-gray-300 w-144 h-12 rounded-full"></div>
-                <div class="bg-gray-300 w-192 h-12 rounded-full"></div>
-                <div class="bg-gray-300 w-192 h-12 rounded-full"></div>
-                <div class="bg-gray-300 w-144 h-12 rounded-full"></div>
-                <div class="bg-gray-300 w-192 h-12 rounded-full"></div>
-                <div class="bg-gray-300 w-640 h-12 rounded-full"></div>
-                <div class="bg-gray-300 w-192 h-12 rounded-full"></div>
-                <div class="bg-gray-300 w-192 h-12 rounded-full"></div>
-                <div class="bg-gray-300 w-144 h-12 rounded-full"></div>
-                <div class="bg-gray-300 w-192 h-12 rounded-full"></div>
-                <div class="bg-gray-300 w-192 h-12 rounded-full"></div>
-                <div class="bg-gray-300 w-144 h-12 rounded-full"></div>
-                <div class="bg-gray-300 w-192 h-12 rounded-full"></div>
-                <div class="bg-gray-300 w-192 h-12 rounded-full"></div>
-                <div class="bg-gray-300 w-144 h-12 rounded-full"></div>
-                <div class="bg-gray-300 w-192 h-12 rounded-full"></div>
-                <div class="bg-gray-300 w-640 h-12 rounded-full"></div>
-                <div class="bg-gray-300 w-192 h-12 rounded-full"></div>
-                <div class="bg-gray-300 w-192 h-12 rounded-full"></div>
-                <div class="bg-gray-300 w-144 h-12 rounded-full"></div>
-                <div class="bg-gray-300 w-192 h-12 rounded-full"></div>
-                <div class="bg-gray-300 w-192 h-12 rounded-full"></div>
-                <div class="bg-gray-300 w-144 h-12 rounded-full"></div>
-                <div class="bg-gray-300 w-192 h-12 rounded-full"></div>
-                <div class="bg-gray-300 w-192 h-12 rounded-full"></div>
-                <div class="bg-gray-300 w-144 h-12 rounded-full"></div>
-                <div class="bg-gray-300 w-192 h-12 rounded-full"></div>
-                <div class="bg-gray-300 w-640 h-12 rounded-full"></div>
-                <div class="bg-gray-300 w-192 h-12 rounded-full"></div>
-                <div class="bg-gray-300 w-192 h-12 rounded-full"></div>
-                <div class="bg-gray-300 w-144 h-12 rounded-full"></div>
-                <div class="bg-gray-300 w-192 h-12 rounded-full"></div>
-                <button type="submit" class="bg-white p-18 shadow shadow-md" id="triggerButton">
-				  <div class="text-14 weight-200">Press here</div>
-				</button>
-                <div class="bg-gray-300 w-192 h-12 rounded-full"></div>
-                <div class="bg-gray-300 w-144 h-12 rounded-full"></div>
-                <div class="bg-gray-300 w-192 h-12 rounded-full"></div>
-                <div class="bg-gray-300 w-192 h-12 rounded-full"></div>
-                <div class="bg-gray-300 w-144 h-12 rounded-full"></div>
-                <div class="bg-gray-300 w-192 h-12 rounded-full"></div>
-                <div class="bg-gray-300 w-640 h-12 rounded-full"></div>
-                <div class="bg-gray-300 w-192 h-12 rounded-full"></div>
-                <div class="bg-gray-300 w-192 h-12 rounded-full"></div>
-                <div class="bg-gray-300 w-144 h-12 rounded-full"></div>
-                <div class="bg-gray-300 w-192 h-12 rounded-full"></div>
-                <div class="bg-gray-300 w-192 h-12 rounded-full"></div>
-                <div class="bg-gray-300 w-144 h-12 rounded-full"></div>
-                <div class="bg-gray-300 w-192 h-12 rounded-full"></div>
-                <div class="bg-gray-300 w-192 h-12 rounded-full"></div>
-                <div class="bg-gray-300 w-144 h-12 rounded-full"></div>
-                <div class="bg-gray-300 w-192 h-12 rounded-full"></div>
-            </div>
-        </div>
-    </div>
-</body>
-<script src="/script.js"></script>
-<style>
-    @import "https://unpkg.com/@zaydek/duomo@0.7.9/dist/duomo-full.css";
-    .screen {
-        width: 100vw;
-        height: 100vh;
-    }
-</style>
-
+		<!-- App -->
+		<div id="app">
+			<h1>Hello, this is the top of the page!</h1>
+			<h1>Hello, world!</h1>
+			<h1>Hello, world!</h1>
+			<h1>Hello, world!</h1>
+			<h1>Hello, world!</h1>
+			<h1>Hello, world!</h1>
+			<h1>Hello, world!</h1>
+			<h1>Hello, world!</h1>
+			<button onclick="window.Modal.open('modal-root1')">open modal</button>
+			<button onclick="window.Modal.open('modal-root2')">open modal</button>
+			<h1>Hello, world!</h1>
+			<h1>Hello, world!</h1>
+			<h1>Hello, world!</h1>
+			<h1>Hello, world!</h1>
+			<h1>Hello, world!</h1>
+			<h1>Hello, world!</h1>
+			<h1>Hello, world!</h1>
+			<h1>Hello, world!</h1>
+			<h1>Hello, world!</h1>
+			<h1>Hello, world!</h1>
+			<h1>Hello, world!</h1>
+			<h1>Hello, world!</h1>
+			<h1>Hello, world!</h1>
+			<h1>Hello, world!</h1>
+			<h1>Hello, world!</h1>
+			<h1>Hello, world!</h1>
+			<h1>Hello, world!</h1>
+			<h1>Hello, world!</h1>
+			<h1>Hello, world!</h1>
+			<h1>Hello, world!</h1>
+			<h1>Hello, world!</h1>
+			<h1>Hello, world!</h1>
+			<h1>Hello, world!</h1>
+			<h1>Hello, world!</h1>
+			<h1>Hello, world!</h1>
+			<h1>Hello, world!</h1>
+			<h1>Hello, world!</h1>
+			<h1>Hello, world!</h1>
+			<h1>Hello, world!</h1>
+			<h1>Hello, world!</h1>
+		</div>
+		<script src="script.js"></script>
+	</body>
 </html>
